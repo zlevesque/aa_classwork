@@ -29,9 +29,9 @@ class Card
 
 end
 
-c = Card.new(:L)
-d = Card.new(:L)
-p c.reveal
-p c.hide
-p d == c.value
-p c.to_s()
+# c = Card.new(:L)
+# d = Card.new(:L)
+# p c.reveal
+# p c.hide
+# p d == c.value
+# p c.to_s()

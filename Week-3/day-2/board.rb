@@ -2,11 +2,12 @@ require_relative 'card'
 
 class Board
 
-    attr_reader :size 
+    attr_reader :size, :grid
     def initialize(n)
-        @grid = Array.new(n) { Array.new(n)}
+        @grid = Array.new(n) { Array.new(n) }
         @size = n * n
-        @shuffle = @grid.shuffle
+        #@shuffle = @grid.shuffle
+        self.populate
     end
 
     def self.render(grid)
@@ -25,16 +26,37 @@ class Board
         @grid[row][col] = card 
     end
 
-    def populate
+    def cards_maker
+      pair = []
+      cards = ("a".."z").to_a
+      mark = cards.sample
 
-        while pairs < (@size * 0.5)
-        row = rand(0...@grid.length)
-        col = rand(0...@grid.length)
-            pos = [row, col]
-            self[pos] = card
+        pair << Card.new(mark).value
+        pair << Card.new(mark).value
+        
+        pair
+    end
+
+    def populate
+      half_size = size / 2
+      arr = []
+      half_size.times do 
+        arr += cards_maker
+      end
+
+      shuffled = arr.shuffle
+      (0...@grid.length).each do |i|
+        (0...@grid.length).each do |j|
+          @grid[i][j] = shuffled.shift
         end
+      end
     end
 
     
 
 end
+
+b = Board.new(4)
+p b.populate
+p b.grid
+#b.cards_maker
