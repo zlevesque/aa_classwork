@@ -6,11 +6,34 @@ class Board
     def initialize(n)
         @grid = Array.new(n) { Array.new(n) }
         @size = n * n
-        #@shuffle = @grid.shuffle
         self.populate
+        self.render
     end
 
-    def self.render(grid)
+    def render
+      g = self.grid_game
+       g.each do |row|
+            puts row.join('|')
+        end
+    end
+
+    def grid_game
+     arr = []
+        grid.each do |row|
+            v = []
+            row.each do |el|
+                if !el.state
+                    v << '_'
+                else
+                    v << el.value
+                end
+            end
+            arr << v
+        end
+        arr
+    end
+    
+    def cheat
         grid.each do |row|
             puts row.join(' ')
         end
@@ -31,8 +54,8 @@ class Board
       cards = ("a".."z").to_a
       mark = cards.sample
 
-        pair << Card.new(mark).value
-        pair << Card.new(mark).value
+        pair << Card.new(mark)
+        pair << Card.new(mark)
         
         pair
     end
@@ -57,6 +80,7 @@ class Board
 end
 
 b = Board.new(4)
-p b.populate
-p b.grid
+# p b.populate
+# p b.grid
+
 #b.cards_maker
