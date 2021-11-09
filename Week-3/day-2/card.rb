@@ -1,11 +1,11 @@
 
 class Card
-  attr_reader :pos, :value
+  attr_reader :value
 
-  def initialize(value, pos)
+  def initialize(value)
     @value = value
     @state = false
-    @pos = pos
+    
   end
 
   def hide
@@ -29,8 +29,8 @@ class Card
 
 end
 
-c = Card.new(:L,[0,0])
-d = Card.new(:L,[1,1])
+c = Card.new(:L)
+d = Card.new(:L)
 p c.reveal
 p c.hide
 p d == c.value
