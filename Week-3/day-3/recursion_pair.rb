@@ -107,6 +107,12 @@ p exp(2, 256)
 
 def deep_dup(arr)
   
+  arr.each do |ele|
+    if ele.to_a?(Array)
+
+    end
+  end
+
 end
 
 # robot_parts = [
@@ -141,6 +147,10 @@ end
 
 # Fibonacci
 # Write a recursive and an iterative Fibonacci method. The method should take in an integer n and return the first n Fibonacci numbers in an array.
+
+def fib(n)
+  
+end
 
 # You shouldn't have to pass any arrays between methods; you should be able to do this just passing a single argument for the number of Fibonacci numbers requested.
 
