@@ -1,4 +1,5 @@
 require_relative 'card'
+require 'byebug'
 
 class Board
 
@@ -12,13 +13,13 @@ class Board
 
     def render
       g = self.grid_game
-       g.each do |row|
+      g.each do |row|
             puts row.join('|')
         end
     end
 
     def grid_game
-     arr = []
+    arr = []
         grid.each do |row|
             v = []
             row.each do |el|
@@ -75,11 +76,22 @@ class Board
       end
     end
 
+    def won?
+      #debugger
+      @grid.each do |row|
+        row.each do |ele|
+          if ele.state == false
+            return false
+          end
+        end
+      end
+      true
+    end
     
 
 end
 
-b = Board.new(4)
+
 # p b.populate
 # p b.grid
 
