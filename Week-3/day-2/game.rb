@@ -38,13 +38,16 @@ class Game
       
       pos_two = get_pos
       @board[pos_two].reveal
+      system("clear")
       @board.render
+      
       @next_card = @board[pos_two]
       if !match?
         @last_card.hide
         @next_card.hide
       end
       puts "____________"
+      system("clear")
       @board.render
     end
     puts "YOU WON!!"
