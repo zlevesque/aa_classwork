@@ -10,7 +10,16 @@
 # Write a recursive method, range, that takes a start and an end and returns an array of all numbers in that range, exclusive. For example, range(1, 5) should return [1, 2, 3, 4]. If end < start, you can return an empty array.
 # Write both a recursive and iterative version of sum of an array.
 
+  def range(a,b)
+    return [] if b == a
 
+    [a] + range(a+1, b)
+    #1 + range(2, 5)
+    #2 + range(3, 5)
+    
+  end
+
+  p range(1,5)
 
 
 # Exponentiation
@@ -53,6 +62,10 @@
 
 # How many examples do you need to walk through to be confident that it works?
 
+
+
+################-NEXT PROBLEM-################################
+
 # Deep dup
 # The #dup method doesn't make a deep copy:
 
@@ -79,10 +92,22 @@
 
 # You should be able to handle "mixed" arrays. For instance: [1, [2], [3, [4]]].
 
+
+
+
+####################-NEXT PROBLEM- ########################
+
+
+
 # Fibonacci
 # Write a recursive and an iterative Fibonacci method. The method should take in an integer n and return the first n Fibonacci numbers in an array.
 
 # You shouldn't have to pass any arrays between methods; you should be able to do this just passing a single argument for the number of Fibonacci numbers requested.
+
+
+
+###################-NEXT PROBLEM-#############################
+
 
 # Binary Search
 # The binary search algorithm begins by comparing the target value to the value of the middle element of the sorted array. If the target value is equal to the middle element's value, then the position is returned and the search is finished. If the target value is less than the middle element's value, then the search continues on the lower half of the array; or if the target value is greater than the middle element's value, then the search continues on the upper half of the array. This process continues, eliminating half of the elements, and comparing the target value to the value of the middle element of the remaining elements - until the target value is either found (and its associated element position is returned), or until the entire array has been searched (and "not found" is returned).
