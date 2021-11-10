@@ -11,15 +11,18 @@
 # Write both a recursive and iterative version of sum of an array.
 
   def range(a,b)
-    return [] if b == a
+    return [] if b <= a
 
-    [a] + range(a+1, b)
+    arr = range(a, b-1) + [b-1]
+    #arr.reverse
+    
+
     #1 + range(2, 5)
     #2 + range(3, 5)
     
   end
 
-  p range(1,5)
+#   p range(1,5)
 
 
 # Exponentiation
@@ -27,16 +30,49 @@
 
 # # this is math, not Ruby methods.
 
+#   def exp(b,n)
+#     return 0 if b == 0
+#     return 1 if n == 0 
+#     b * exp(b,n-1)
+
+
+#   end
+
+
+def exp(b,n)
+    return 0 if b == 0
+    return 1 if n == 0 
+    rec = (exp(b, (n-1) / 2))
+    rec1 = exp(b, n/2)
+    if n % 2 == 1 
+        rec = b * (rec * rec)
+    else 
+        rec1 = rec1 * rec1
+    end
+end
+
+
 # # recursion 1
-# exp(b, 0) = 1
-# exp(b, n) = b * exp(b, n - 1)
+p exp(0, 1) #= 1
+p exp(1, 0)
+p exp(1, 1) #= b * exp(b, n - 1)
+p exp(1, 2)
+p exp(2, 0)
+p exp(2, 1)
+p exp(2, 2)
+p exp(2, 256)
+
+
+
+
 
 # # recursion 2
 # exp(b, 0) = 1
 # exp(b, 1) = b
 # exp(b, n) = exp(b, n / 2) ** 2             [for even n]
 # exp(b, n) = b * (exp(b, (n - 1) / 2) ** 2) [for odd n]
-# Note that for recursion 2, you will need to square the results of exp(b, n / 2) and (exp(b, (n - 1) / 2). Remember that you don't need to do anything special to square a number, just calculate the value and multiply it by itself. So don't cheat and use exponentiation in your solution.
+# Note that for recursion 2, you will need to square the results of exp(b, n / 2) and (exp(b, (n - 1) / 2). Remember that you don't need to do anything special to square a 
+# number, just calculate the value and multiply it by itself. So don't cheat and use exponentiation in your solution.
 
 # Suggestion: Break the methods down into parts..
 
