@@ -52,15 +52,15 @@ def exp(b,n)
 end
 
 
-# # recursion 1
-p exp(0, 1) #= 1
-p exp(1, 0)
-p exp(1, 1) #= b * exp(b, n - 1)
-p exp(1, 2)
-p exp(2, 0)
-p exp(2, 1)
-p exp(2, 2)
-p exp(2, 256)
+# # # recursion 1
+# p exp(0, 1) #= 1
+# p exp(1, 0)
+# p exp(1, 1) #= b * exp(b, n - 1)
+# p exp(1, 2)
+# p exp(2, 0)
+# p exp(2, 1)
+# p exp(2, 2)
+# p exp(2, 256)
 
 
 
@@ -149,8 +149,23 @@ end
 # Write a recursive and an iterative Fibonacci method. The method should take in an integer n and return the first n Fibonacci numbers in an array.
 
 def fib(n)
+  return [] if n == 0
+  return [0] if n == 1
+  return [0,1] if n == 2
+  
+  f = fib(n-1)[-1] #n-1 = [1] | [1]
+  f1 = fib(n-1)[-2] #n-1 = [0] | [1]
+  fib(n-1) << f + f1 # fib(2): [0,1] << [1] == [0,1,1] << 2
   
 end
+
+# p fib(0)
+# p fib(1)
+# p fib(2)
+# p fib(3)
+# p fib(4)
+# p fib(10)
+
 
 # You shouldn't have to pass any arrays between methods; you should be able to do this just passing a single argument for the number of Fibonacci numbers requested.
 
@@ -164,23 +179,86 @@ end
 
 # Write a recursive binary search: bsearch(array, target). Note that binary search only works on sorted arrays. Make sure to return the location of the found object (or nil if not found!). Hint: you will probably want to use subarrays.
 
+def binary_search(arr, target,new_arr=[]) #[1, 3, 4, 5, 9], 5 
+  return nil if arr.length == 0
+  #new_arr = arr.dup
+  pivot = arr[arr.length / 2] # 4
+  pivot_idx = arr.index(pivot) # 2
+
+  if pivot == target # 2 == 5 NOPE 
+    return pivot_idx
+  end
+
+  if pivot > target # 4 > 5 --- 9 > 5 YES
+    left_side = arr[0...pivot_idx] #arr[0...2] = [1,2]
+    binary_search(left_side, target) 
+  else
+    right_side = arr[pivot_idx+1..-1] #[5,9]
+    temp = binary_search(right_side,target)
+    if temp == nil
+      return nil
+    else 
+      temp + pivot_idx + 1
+    end
+  end
+
+end
+
 # Make sure that these test cases are working:
 
-# bsearch([1, 2, 3], 1) # => 0
-# bsearch([2, 3, 4, 5], 3) # => 1
-# bsearch([2, 4, 6, 8, 10], 6) # => 2
-# bsearch([1, 3, 4, 5, 9], 5) # => 3
-# bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-# bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-# bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+p binary_search([1, 2, 3], 1) # => 0
+p binary_search([2, 3, 4, 5], 3) # => 1
+p binary_search([2, 4, 6, 8, 10], 6) # => 2
+p binary_search([1, 3, 4, 5, 9], 5) # => 3
+p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
+p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
+p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
+
+
+
+
+
+#############- NEW PROBLEM ##################
+
+
+
+
 # Merge Sort
 # Implement a method merge_sort that sorts an Array:
+
+  def merge_sort(arr) #[38,27,43]
+    #divide by half
+    #call merge_sort
+    #base case != length-two
+    #helper method combine sorted arrays
+    if left.length == 1 || right.length == 1
+      return merge_sort(left) && merge_sort(right) 
+    end
+
+    half = arr.length / 2 # 1
+    left = arr[0...half] #[38]
+    right = arr[half..-1] #[27,43]
+    
+    # merge_sort(left)
+    # merge_sort(right)
+    # merge_helper(new_arr)
+    new_arr = merge_help(left) + merge_help(right)
+  end
+
+  def merge_helper(arr)
+
+  end
 
 # The base cases are for arrays of length zero or one. Do not use a length-two array as a base case. This is unnecessary.
 # You'll want to write a merge helper method to merge the sorted halves.
 # To get a visual idea of how merge sort works, watch this gif and check out this diagram.
+
+###########################
+
+
 # Array Subsets
 # Write a method subsets that will return all subsets of an array.
+
 
 # subsets([]) # => [[]]
 # subsets([1]) # => [[], [1]]
@@ -193,6 +271,14 @@ end
 
 # Those that do not contain 3 (all of these are subsets of [1, 2]).
 # For every subset that does not contain 3, there is also a corresponding subset that is the same, except it also does contain 3.
+
+
+
+
+
+
+#######-------problem-#######
+
 # Permutations
 # Write a recursive method permutations(array) that calculates all the permutations of the given array. For an array of length n there are n! different permutations. So for an array with three elements we will have 3 * 2 * 1 = 6 different permutations.
 
