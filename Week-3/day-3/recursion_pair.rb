@@ -231,22 +231,18 @@ p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
     #call merge_sort
     #base case != length-two
     #helper method combine sorted arrays
-    if left.length == 1 || right.length == 1
-      return merge_sort(left) && merge_sort(right) 
-    end
+    return arr[0] if arr.length == 1
 
     half = arr.length / 2 # 1
     left = arr[0...half] #[38]
     right = arr[half..-1] #[27,43]
-    
-    # merge_sort(left)
-    # merge_sort(right)
-    # merge_helper(new_arr)
-    new_arr = merge_help(left) + merge_help(right)
+    sort_left = merge_sort(left)
+    sort_right = merge_sort(right)
   end
+    
 
-  def merge_helper(arr)
-
+  def merge_helper(left, right)
+    new_arr = 
   end
 
 # The base cases are for arrays of length zero or one. Do not use a length-two array as a base case. This is unnecessary.
