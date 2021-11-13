@@ -35,6 +35,16 @@ class PolyTreeNode
     new_child.parent = nil
   end
 
+  def dfs(target)
+    return self if self.value == target
+    return nil if self.children.empty?
+    self.children.each do |child|
+      child_store = child.dfs(target)
+      return child_store if child_store != nil
+    end
+    nil
+  end
+
 
 
   attr_reader :parent, :children, :value
@@ -43,8 +53,12 @@ end
 
 class Searchable
 
+#   Write a #dfs(target_value) method which takes a value to search for and   performs the search. Write this recursively.
+# First, check the value at this node. If a node's value matches the target value, return the node.
+# If not, iterate through the #children and repeat.
+
   def dfs(value)
-    
+    return value if self == value
   end
 
 
