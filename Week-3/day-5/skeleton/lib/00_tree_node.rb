@@ -38,6 +38,7 @@ class PolyTreeNode
   def dfs(target)
     return self if self.value == target
     return nil if self.children.empty?
+    #debugger
     self.children.each do |child|
       child_store = child.dfs(target)
       return child_store if child_store != nil
@@ -45,6 +46,21 @@ class PolyTreeNode
     nil
   end
 
+
+  def bfs(target)
+    return self if self.value == target
+    q = [self]
+    until q.empty?
+      next_node = q.shift
+      return next_node if next_node.value == target
+
+      if !next_node.children.empty?
+        q.push(next_node.children.first)
+        q.push(next_node.children.last)
+      end
+    end
+    nil
+  end
 
 
   attr_reader :parent, :children, :value
