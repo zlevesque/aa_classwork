@@ -12,16 +12,20 @@ class PolyTreeNode
 
   def parent=(new_parent) 
     # debugger
-    return if new_parent == parent
+    return if new_parent == @parent
 
     if self.parent != nil
+      # should remove the node from its old parent's children
       self.parent.children.delete(self)
     end
 
+    # should set a node's parent to the passed node
     @parent = new_parent
 
-    return nil if parent == nil
+    #new_parent works too , handles nil without issue
+    return if @parent == nil
 
+    # should add the child node to the passed node's children
     new_parent.children.push(self)
     
   end
@@ -48,7 +52,6 @@ class PolyTreeNode
 
 
   def bfs(target)
-    return self if self.value == target
     q = [self]
     until q.empty?
       next_node = q.shift
@@ -64,22 +67,5 @@ class PolyTreeNode
 
 
   attr_reader :parent, :children, :value
-
-end
-
-class Searchable
-
-#   Write a #dfs(target_value) method which takes a value to search for and   performs the search. Write this recursively.
-# First, check the value at this node. If a node's value matches the target value, return the node.
-# If not, iterate through the #children and repeat.
-
-  def dfs(value)
-    return value if self == value
-  end
-
-
-
-
-
 
 end
