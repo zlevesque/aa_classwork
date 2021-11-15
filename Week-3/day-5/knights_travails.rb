@@ -3,14 +3,29 @@ require_relative 'treenode.rb'
 
 class KnightPathFinder
 
-  attr_reader :considered_positions
+  attr_reader :considered_positions, :start_pos
   MOVES =[ [2,1], [2,-1], [-2,1] , [-2,-1],
            [1,2], [-1,-2], [1,-2], [-1,2]]
 
-  def initialize(pos)
-    @pos = pos
-    @root_node = PolyTreeNode.new([0,0]) #possible self.root_node
-    @considered_positions = [pos]
+  def valid_positions(pos) # pos = [1,1]
+    arr = []
+
+    MOVES.each do |coordinates|
+      x = coordinates[0] + pos[0]
+      y = coordinates[1] + pos[1]
+
+      if new_move_positions([x,y])
+        arr.push([x,y])
+      end
+    end
+    
+    arr
+
+  end
+
+  def initialize(start_pos)
+    @start_pos = start_pos
+    @considered_positions = [start_pos]
     self.build_move_tree
   end
 
@@ -29,7 +44,11 @@ class KnightPathFinder
   # Write an instance method #new_move_positions(pos); this should call the ::valid_moves class method, but filter out any positions that are already in @considered_positions. It should then add the remaining new positions to @considered_positions and return these new positions.
 
   def self.valid_moves?(pos) # 8 possible moves
-    MOVES.include?(pos)
+    row, col = pos
+    return false if !(0...8).include?(row)
+    return false if !(0...8).include?(col)
+    true
+    #MOVES.include?(pos)
   end
 
   def considered_moves(pos)
@@ -40,6 +59,7 @@ class KnightPathFinder
     return if self.considered_positions.include?(pos)
     if KnightPathFinder.valid_moves?(pos)
       self.considered_moves(pos)
+      return true
     end
   end
 
@@ -48,21 +68,21 @@ class KnightPathFinder
   # Next build nodes representing positions one move away, add these to the queue. Then take the next node from the queue... until the queue is empty.
 
   def build_move_tree
+    root_node = PolyTreeNode.new(start_pos)
     queue = [root_node] #@root node value?
     until queue.empty?
-      current = queue.shift 
-      
+      current_node = queue.shift 
+      current_value = current_node.value
+
+      #current_node.children.each do |next_child|
+      valid_positions(current_value).each do |move_position|
+        new_node = PolyTreeNode.new(move_position)
+        queue << new_node
+      end
     end
   end
 
-  # def bfs(target)
-  #   q = [self]
-  #   until q.empty?
-  #     next_node = q.shift
-  #     return next_node if next_node.value == target
-  #     q += next_node.children
-  #   end
-  #   nil
-  # end
+
   
 end
+
