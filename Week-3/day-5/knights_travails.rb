@@ -3,7 +3,7 @@ require_relative 'treenode.rb'
 
 class KnightPathFinder
 
-  attr_reader :considered_positions, :start_pos
+  attr_reader :considered_positions, :start_pos, :root_node
   MOVES =[ [2,1], [2,-1], [-2,1] , [-2,-1],
            [1,2], [-1,-2], [1,-2], [-1,2]]
 
@@ -26,14 +26,9 @@ class KnightPathFinder
   def initialize(start_pos)
     @start_pos = start_pos
     @considered_positions = [start_pos]
+    @root_node = PolyTreeNode.new(start_pos)
     self.build_move_tree
   end
-
-  # def [](pos)
-  #   row,col = pos 
-  #   ...[row][col]
-  # end
-
 
   # def build_move_tree
   #   PolyTreeNode.root_node # [0,0]
@@ -68,13 +63,11 @@ class KnightPathFinder
   # Next build nodes representing positions one move away, add these to the queue. Then take the next node from the queue... until the queue is empty.
 
   def build_move_tree
-    root_node = PolyTreeNode.new(start_pos)
-    queue = [root_node] #@root node value?
+    queue = [@root_node] #queue = [@root_node]
     until queue.empty?
       current_node = queue.shift 
       current_value = current_node.value
 
-      #current_node.children.each do |next_child|
       valid_positions(current_value).each do |move_position|
         new_node = PolyTreeNode.new(move_position)
         queue << new_node
@@ -82,7 +75,16 @@ class KnightPathFinder
     end
   end
 
+  # Create an instance method #find_path(end_pos) to search for end_pos in the move tree. You can use either dfs or bfs search methods from the PolyTreeNode exercises; it doesn't matter. This should return the tree node instance containing end_pos.
 
+  def find_path(end_pos) 
+    #@root node is the start position 
+    @root_node.dfs(end_pos)
+  end
+
+  
+
+  # This gives us a node, but not a path. Lastly, add a method #trace_path_back to KnightPathFinder. This should trace back from the node to the root using PolyTreeNode#parent. As it goes up-and-up toward the root, it should add each value to an array. #trace_path_back should return the values in order from the start position to the end position.
   
 end
 
