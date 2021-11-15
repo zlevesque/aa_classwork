@@ -56,11 +56,7 @@ class PolyTreeNode
     until q.empty?
       next_node = q.shift
       return next_node if next_node.value == target
-
-      if !next_node.children.empty?
-        q.push(next_node.children.first)
-        q.push(next_node.children.last)
-      end
+      q += next_node.children
     end
     nil
   end
