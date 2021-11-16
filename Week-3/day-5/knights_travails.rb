@@ -30,21 +30,17 @@ class KnightPathFinder
     self.build_move_tree
   end
 
-  # def build_move_tree
-  #   PolyTreeNode.root_node # [0,0]
-  # end
-
   # You'll also want to avoid repeating positions in the move tree. For instance, we don't want to infinitely explore moving betweeen the same two positions. Add an instance variable, @considered_positions to keep track of the positions you have considered; initialize it to the array containing just the starting pos. 
   
   # Write an instance method #new_move_positions(pos); this should call the ::valid_moves class method, but filter out any positions that are already in @considered_positions. It should then add the remaining new positions to @considered_positions and return these new positions.
 
   def self.valid_moves?(pos) # 8 possible moves
     row, col = pos
-    return false if !(0...8).include?(row)
+    return false if !(0...8).include?(row) 
     return false if !(0...8).include?(col)
     true
-    #MOVES.include?(pos)
   end
+
 
   def considered_moves(pos)
     @considered_positions << pos 
@@ -94,13 +90,12 @@ class KnightPathFinder
       end_node = end_node.parent
     end
     arr.unshift(end_node.value)
-    arr
   end  
 
   # This gives us a node, but not a path. Lastly, add a method #trace_path_back to KnightPathFinder. This should trace back from the node to the root using PolyTreeNode#parent. As it goes up-and-up toward the root, it should add each value to an array. #trace_path_back should return the values in order from the start position to the end position.
   
 end
 
-# kpf = KnightPathFinder.new([0, 0])
-# p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
-# p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+kpf = KnightPathFinder.new([0, 0])
+p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
