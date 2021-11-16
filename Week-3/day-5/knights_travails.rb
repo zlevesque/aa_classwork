@@ -67,9 +67,11 @@ class KnightPathFinder
     until queue.empty?
       current_node = queue.shift 
       current_value = current_node.value
-
+      
       valid_positions(current_value).each do |move_position|
         new_node = PolyTreeNode.new(move_position)
+        current_node.children.push(new_node)
+        new_node.parent = current_node
         queue << new_node
       end
     end
@@ -79,12 +81,26 @@ class KnightPathFinder
 
   def find_path(end_pos) 
     #@root node is the start position 
-    @root_node.dfs(end_pos)
+    end_node = @root_node.dfs(end_pos) #recieve end position
+    trace_path_back(end_node)
   end
 
-  
+  def trace_path_back(end_node)
+    # loop until parent = nil
+    # if !parent.nil? then arr << child
+    arr = []
+    while end_node.parent != nil
+      arr.unshift(end_node.value)
+      end_node = end_node.parent
+    end
+    arr.unshift(end_node.value)
+    arr
+  end  
 
   # This gives us a node, but not a path. Lastly, add a method #trace_path_back to KnightPathFinder. This should trace back from the node to the root using PolyTreeNode#parent. As it goes up-and-up toward the root, it should add each value to an array. #trace_path_back should return the values in order from the start position to the end position.
   
 end
 
+# kpf = KnightPathFinder.new([0, 0])
+# p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+# p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
