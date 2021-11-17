@@ -1,4 +1,9 @@
-class Knight
+class Knight < Piece
+
+  def initialize
+    @symbol = "N"
+    
+  end
 
   def self.valid_moves?(pos)
     row, col = pos
@@ -33,6 +38,11 @@ class Knight
 
 end
 
-class King
+class King < Piece
+
+  def initialize
+    @symbol = "K"
+  end
+
 
 end

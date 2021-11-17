@@ -1,13 +1,15 @@
-class NullPiece
+require 'singleton'
+
+class NullPiece < Piece
+include Singleton 
   #nullpiece git comment test
   def initialize
-    #blablabla
-
-    #adding another comment
-
+    @symbol = "_"
   end
 
-  def move
-    
+  def move(pos)
+     if board[pos]!= self.symbol 
+      board[pos] = self.symbol
+     end
   end
 end

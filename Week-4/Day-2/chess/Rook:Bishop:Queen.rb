@@ -23,7 +23,21 @@ module Slideable
   end
 
   def self.horizontal_dirs(pos)
+    [row, col], #[0,7]
+    [row, col],   # 
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col]
     
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col],
+    [row, col],
   end
 
   def diagnol_dirs(pos)
@@ -39,39 +53,48 @@ module Slideable
 end
 
 
-# class Rook < Piece
-#   # def self.is_valid?(pos)
-#   #   row, col = pos
-#   #   range = (0...8).to_a
-#   #   range.include?(row) && range.include?(col)
-#   # end
+class Rook < Piece
 
-#   # def initialize(pos)
+  def initialize
+    @symbol = "R"
+  end
+  # def self.is_valid?(pos)
+  #   row, col = pos
+  #   range = (0...8).to_a
+  #   range.include?(row) && range.include?(col)
+  # end
+
+  # def initialize(pos)
   
-#   # end
+  # end
   
-#     # path += [
-#     #   [row+2, col+1],
-#     #   [row+1, col+2],
-#     #   [row-2, col-1],
-#     #   [row-1, col-2],
-#     #   [row+2, col-1],
-#     #   [row+1, col-2],
-#     #   [row-2, col+1],
-#     #   [row-1, col+2]
-#     # ]
-#     # valid_position?(path)
+    # path += [
+    #   [row+2, col+1],
+    #   [row+1, col+2],
+    #   [row-2, col-1],
+    #   [row-1, col-2],
+    #   [row+2, col-1],
+    #   [row+1, col-2],
+    #   [row-2, col+1],
+    #   [row-1, col+2]
+    # ]
+    # valid_position?(path)
   
 
-# end
+end
 
-# class Bishop
+class Bishop < Piece
+  def initialize
+    @symbol = "B"
+  end
 
-# end
+end
 
-# class Queen
-
-# end
+class Queen < Piece
+  def initialize
+    @symbol = "Q"
+  end
+end
 
 p Slideable.moves([0,0])
 p Slideable.moves([0,0]).count
