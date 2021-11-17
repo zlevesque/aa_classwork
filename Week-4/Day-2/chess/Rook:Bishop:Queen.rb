@@ -1,50 +1,68 @@
-Module Slideable
+module Slideable
 
-end
-
-
-class Rook < Piece
-  # def self.is_valid?(pos)
-  #   row, col = pos
-  #   range = (0...8).to_a
-  #   range.include?(row) && range.include?(col)
-  # end
-
-  # def initialize(pos)
-  
-  # end
-  def self.valid_moves?(pos)
+  def moves(pos)
     row, col = pos
-    path = [[row,col]]
+    #path = [[row,col]]
+    all_pos = []
+    valid_pos = []
     (-7..7).each do |v|
       (-7..7).each do |h|
-        if Piece.is_valid?(pos)
-          [row+v, col+h]
-          
+        all_pos << [row+v, col+h]
         end
-
       end
-    end
-    # path += [
-    #   [row+2, col+1],
-    #   [row+1, col+2],
-    #   [row-2, col-1],
-    #   [row-1, col-2],
-    #   [row+2, col-1],
-    #   [row+1, col-2],
-    #   [row-2, col+1],
-    #   [row-1, col+2]
-    # ]
-    # valid_position?(path)
+    all_pos
   end
+
+  def self.horizontal_dirs(pos)
+    
+  end
+
+  def diagnol_dirs(pos)
+
+  end
+
+  def self.is_valid?(pos)
+    row, col = pos
+    range = (0...8).to_a
+    range.include?(row) && range.include?(col)
+  end
+
+end
+
+
+# class Rook < Piece
+#   # def self.is_valid?(pos)
+#   #   row, col = pos
+#   #   range = (0...8).to_a
+#   #   range.include?(row) && range.include?(col)
+#   # end
+
+#   # def initialize(pos)
+  
+#   # end
+  
+#     # path += [
+#     #   [row+2, col+1],
+#     #   [row+1, col+2],
+#     #   [row-2, col-1],
+#     #   [row-1, col-2],
+#     #   [row+2, col-1],
+#     #   [row+1, col-2],
+#     #   [row-2, col+1],
+#     #   [row-1, col+2]
+#     # ]
+#     # valid_position?(path)
   
 
-end
+# end
 
-class Bishop
+# class Bishop
 
-end
+# end
 
-class Queen
+# class Queen
 
-end
+# end
+
+
+p Slideable.horizontal_dirs([0,0])
