@@ -17,8 +17,12 @@ class Knight
   end
   
   def is_this_on
-    puts 'mo'
+    puts 'mo' 
+    p 'can you see this'
   end
+  
+   
+
 
 
   def self.valid_position(path)
