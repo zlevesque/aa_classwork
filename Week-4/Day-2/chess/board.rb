@@ -17,26 +17,26 @@ class Board
     @board[row][col] = val
   end
 
-  def move_piece(start_pos, end_pos)
-    # check piece's color 
-    # valid moves are unique to different pieces
-    if self[start_pos] != '_' 
-      self[start_pos] =  'cat' # come fix me pls. value is placeholder for now
-    else
-      raise "ERROR - move piece"
-    end
-  end
+  # def move_piece(start_pos, end_pos)
+  #   # check piece's color 
+  #   # valid moves are unique to different pieces
+  #   if self[start_pos] != '_' 
+  #     self[start_pos] =  'cat' # come fix me pls. value is placeholder for now
+  #   else
+  #     raise "ERROR - move piece"
+  #   end
+  # end
 
-  # initialize board, populate it and take a look
-    def populate_board
-        
-    end
-  
+  # # initialize board, populate it and take a look
+  #   def start_chess
+  #     board = self.new
+  #     populate
+  #   end
   
   
 end
 
 b= Board.new
-p b.board
-p b.move_piece([0,0],[1,2])
-p b.board
+# p b.board
+# p b.move_piece([0,0],[1,2])
+# p b.board
