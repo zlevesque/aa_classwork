@@ -8,5 +8,5 @@
         range.include?(row) && range.include?(col)
       end
     
-    
+     
  end
