@@ -1,6 +1,6 @@
 module Slideable
 
-  def moves(pos)
+  def self.moves(pos)
     row, col = pos
     #path = [[row,col]]
     all_pos = []
@@ -8,13 +8,25 @@ module Slideable
     (-7..7).each do |v|
       (-7..7).each do |h|
         all_pos << [row+v, col+h]
+        all_pos.each do |coord| 
+          if coord[0] >= 0 && coord[1] >= 0
+            valid<< coord 
+          end
         end
       end
-    all_pos
+    end
+    valid
   end
 
   def self.horizontal_dirs(pos)
-    
+    moves =self.moves(pos)
+    horiz=[]
+    moves.each do |coord| 
+        if coord[0] >= 0 && coord[1] >= 0
+          horiz<< coord 
+        end
+    end
+    return horiz
   end
 
   def diagnol_dirs(pos)
@@ -65,4 +77,4 @@ end
 # end
 
 
-p Slideable.horizontal_dirs([0,0])
+p Slideable.moves([0,0])
