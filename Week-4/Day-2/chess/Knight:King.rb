@@ -1,4 +1,4 @@
-lass Knight
+class Knight
 
   def self.valid_moves?(pos)
     row, col = pos
@@ -15,7 +15,10 @@ lass Knight
     ]
     valid_position?(path)
   end
-
+  
+  def is_this_on
+    puts 'mo'
+  end
 
 
   def self.valid_position(path)
