@@ -1,6 +1,7 @@
-class Knight < Piece
-
+class Knight #< Piece
+  attr_reader :symbol
   def initialize
+    #super
     @symbol = "N"
     
   end
@@ -27,9 +28,6 @@ class Knight < Piece
   end
   
    
-
-
-
   def self.valid_position(path)
     path.select do |pos|
         is_valid?(pos)
@@ -38,9 +36,10 @@ class Knight < Piece
 
 end
 
-class King < Piece
-
+class King #< Piece
+  attr_reader :symbol
   def initialize
+    #super
     @symbol = "K"
   end
 

@@ -1,16 +1,20 @@
-require_relative "board"
- 
- class Piece < Board 
-  
-    def initialize(color, pos) #board
+# require_relative "board"
+# require_relative "NullPiece"
+# require_relative "KnightKing"
+# require_relative "RookBishopQueen" 
+# require_relative "Pawn"
+
+
+ class Piece 
+    attr_reader :board, :pos
+    attr_accessor :color
+    def initialize(color,board, pos) #board
       @color = color
       @pos = pos    #Array
       #super(board)
+      @board = board 
     end
 
-    def board
-      @board = Board.new
-    end
 
     def self.is_valid?(pos)
         row, col = pos
@@ -18,40 +22,36 @@ require_relative "board"
         range.include?(row) && range.include?(col)
     end
     
-    def self.populate_board
-      board[0][0] = Rook.new(b)
-      board[0][7] = Rook.new(b)
-      board[7][0] = Rook.new(w)
-      board[7][7] = Rook.new(w)
+    # def self.populate_board
+    #   @board[0,0] = Rook.new.symbol
+    #   @board[0,7] = Rook.new.symbol
+    #   @board[7,0] = Rook.new.symbol
+    #   @board[7,7] = Rook.new.symbol
+    #   @board[0,1] = Knight.new.symbol
+    #   @board[0,6] = Knight.new.symbol
+    #   @board[7,1] = Knight.new.symbol 
+    #   @board[7,6] = Knight.new.symbol
+    #   @board[0,2] = Bishop.new.symbol
+    #   @board[0,5] = Bishop.new.symbol
+    #   @board[7,2] = Bishop.new.symbol
+    #   @board[7,5] = Bishop.new.symbol
+    #   @board[0,4] = King.new.symbol
+    #   @board[7,4] = King.new.symbol
+    #   @board[0,3] = Queen.new.symbol
+    #   @board[7,3] = Queen.new.symbol
   
-      board[0][1] = Knight.new(b)
-      board[0][6] = Knight.new(b)
-      board[7][1] = Knight.new(w)
-      board[7][6] = Knight.new(w)
-  
-      board[0][2] = Bishop.new(b)
-      board[0][5] = Bishop.new(b)
-      board[7][2] = Bishop.new(w)
-      board[7][5] = Bishop.new(w)
-  
-      board[0][4] = King.new(b)
-      board[7][4] = King.new(w)
-  
-      board[0][3] = Queen.new(b)
-      board[7][3] = Queen.new(w)
-  
-      (0...7).each do |col|
+    #   (0...7).each do |col|
       
   
-      board[1][col] = Pawn.new(b)
-      board[2][col] = NullPiece.new
-      board[3][col] = NullPiece.new
-      board[4][col] = NullPiece.new
-      board[5][col] = NullPiece.new
-      board[6][col] = Pawn.new(w)
-      end
-      self.print_board
-    end
+    #   @board[1,col] = Pawn.new.symbol
+    #   @board[2,col] = NullPiece.new.symbol
+    #   @board[3,col] = NullPiece.new.symbol
+    #   @board[4,col] = NullPiece.new.symbol
+    #   @board[5,col] = NullPiece.new.symbol
+    #   @board[6,col] = Pawn.new.symbol
+    #   end
+    #   self.print_board
+    # end
 
       # def  
 

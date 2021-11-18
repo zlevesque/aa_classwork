@@ -1,9 +1,11 @@
-require 'singleton'
+#require 'singleton'
 
-class NullPiece < Piece
-include Singleton 
-  #nullpiece git comment test
+class NullPiece #< Piece
+#include Singleton 
+attr_reader :symbol
+
   def initialize
+    super
     @symbol = "_"
   end
 
